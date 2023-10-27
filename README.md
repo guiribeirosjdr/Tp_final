@@ -22,15 +22,16 @@ Este é um Trabalho Prático para a disciplina de Programação e Desenvolviment
    
    A estrutura do projeto é a seguinte:
    
-   - `_____`: Este diretório contém o código-fonte do jogo de damas.
-   - `_____`: Aqui, você pode encontrar a documentação do projeto.
-   - `_____`: Qualquer recurso gráfico ou de mídia usado no jogo é armazenado neste diretório.
+   - `src`: Este diretório contém o código-fonte do jogo de damas.
+   - `include`: Aqui, você pode encontrar a documentação de cabeçalho do projeto.
+   - `cartaoCRC`: As classes estão descritas neste diretório.
+   - `main.cpp`: Contém a função principal do programa.
 
 ## Como Jogar
 
 1. **Instruções de Compilação**:
    - Certifique-se de que você possui um compilador C++ instalado.
-   - Compile o jogo executando `g++ -o jogo main.cpp tabuleiro.cpp`.
+   - Compile o jogo executando `g++ -o jogo main.cpp tabuleiro.cpp jogador.cpp regrasdojogo.cpp interfacegrafica.cpp jogodedamas.cpp`.
 
 2. **Instruções de Execução**:
    - Após a compilação, execute o jogo com `./jogo`.
