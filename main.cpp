@@ -1,13 +1,13 @@
 #include <iostream>
+#include <QApplication>
+#include <QWidget>
+#include <QPushButton>
+#include <QMessageBox>
 #include "tabuleiro.h"
 #include "jogador.h"
 #include "regrasdojogo.h"
 #include "interfacegrafica.h"
 #include "jogodedamas.h"
-#include <QApplication>
-#include <QWidget>
-#include <QPushButton>
-#include <QMessageBox>
 
 
 using namespace std;
