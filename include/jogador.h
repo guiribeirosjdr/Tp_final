@@ -9,7 +9,6 @@ private:
 public:
     Jogador(Cor cor);
     Jogada realizarJogada(Tabuleiro& tabuleiro);
-    // Outros métodos para tomada de decisões e ações do jogador...
 };
 
 #endif
