@@ -1,66 +1,25 @@
 #include <iostream>
-
-#include "include/tabuleiro.h"
+#include "tabuleiro.h"
+#include "jogador.h"
+#include "regrasdojogo.h"
+#include "interfacegrafica.h"
+#include "jogodedamas.h"
 
 using namespace std;
 
 int main() {
-  Tabuleiro *tab = new Tabuleiro();
-  tab->imprime();
-  
-  bool esq = true;
-  bool dir = false;
-  
-  bool ok = tab->movimenta(0, 0, esq);
-  if (!ok) cout << "Erro no movimento!";
-  cout << endl;
-  tab->imprime();
-  
-  ok = tab->movimenta(0, 0, dir);
-  if (!ok) cout << "Erro no movimento!";
-  cout << endl;
-  tab->imprime();
-  
-  ok = tab->movimenta(2, 0, esq);
-  if (!ok) cout << "Erro no movimento!";
-  cout << endl;
-  tab->imprime();
-  
-  ok = tab->movimenta(2, 0, dir);
-  if (!ok) cout << "Erro no movimento!";
-  cout << endl;
-  tab->imprime();
-  
-  ok = tab->movimenta(7, 3, dir);
-  if (!ok) cout << "Erro no movimento!";
-  cout << endl;
-  tab->imprime();
-  
-  ok = tab->movimenta(7, 3, esq);
-  if (!ok) cout << "Erro no movimento!";
-  cout << endl;
-  tab->imprime();
-  
-  ok = tab->movimenta(5, 2, dir);
-  if (!ok) cout << "Erro no movimento!";
-  cout << endl;
-  tab->imprime();
-  
-  ok = tab->movimenta(5, 3, dir);
-  if (!ok) cout << "Erro no movimento!";
-  cout << endl;
-  tab->imprime();
-  
-  ok = tab->movimenta(3, 1, dir);
-  if (!ok) cout << "Erro no movimento!";
-  cout << endl;
-  tab->imprime();
-  
-  ok = tab->movimenta(5, 1, dir);
-  if (!ok) cout << "Erro no movimento!";
-  cout << endl;
-  tab->imprime();
+    JogoDeDamas jogo; // Crie uma instância do jogo de Damas
 
-  delete tab;
-  return 0;
+    jogo.iniciarJogo(); // Inicie o jogo
+
+    while (!jogo.jogoTerminou()) {
+        jogo.rodadaDeJogo();
+    }
+
+    Cor vencedor = jogo.verificarVencedor();
+    jogo.encerrarJogo();
+
+    cout << "O jogador " << (vencedor == PRETA ? "PRETO" : "VERMELHO") << " venceu!" << endl;
+
+    return 0;
 }
