@@ -1,6 +1,63 @@
-class InterfaceGrafica {
+//Classe Interface grafica
+class InterfaceGrafica : public QWidget {
+    Q_OBJECT
+
 public:
-  void mostrarTabuleiro(Tabuleiro tabuleiro);
-  Jogada capturarJogada();
-  void exibirMensagem(string mensagem);
+    InterfaceGrafica(Tabuleiro& tabuleiro, Jogador& jogador, RegrasDoJogo& regras)
+        : tabuleiro(tabuleiro), jogador(jogador), regras(regras) {
+        setFixedSize(400, 400);
+
+        // Crie uma grade de botões para representar o tabuleiro
+        QGridLayout* gridLayout = new QGridLayout(this);
+
+        for (int linha = 0; linha < 8; linha++) {
+            for (int coluna = 0; coluna < 8; coluna++) {
+                QPushButton* botao = new QPushButton(this);
+                botao->setFixedSize(50, 50);  // Tamanho dos botões
+                gridLayout->addWidget(botao, linha, coluna);
+                // Conectar o botão ao slot para realizar a jogada
+                connect(botao, &QPushButton::clicked, this, [=] {
+                    realizarJogada(linha, coluna);
+                });
+            }
+        }
+    }
+
+public slots:
+    void realizarJogada(int linhaDestino, int colunaDestino) {
+        // Após o jogador escolher a peça de origem e o destino, chame o método do jogador para realizar a jogada.
+        Jogada jogada = jogador.realizarJogada(tabuleiro);
+
+        // Valide a jogada com as regras do jogo 
+        if (regras.jogadaValida(tabuleiro, jogada.linhaOrigem, jogada.colunaOrigem, linhaDestino, colunaDestino)) {
+            // Realize a jogada no tabuleiro 
+            tabuleiro.realizarJogada(jogada.linhaOrigem, jogada.colunaOrigem, linhaDestino, colunaDestino);
+
+            // Verifique se o jogo terminou 
+            if (regras.jogoTerminou(tabuleiro)) {
+                QMessageBox::information(this, "Fim de Jogo!");
+            }
+        } else {
+            // A jogada não é válida, você pode exibir uma mensagem de erro
+            QMessageBox::critical(this, "A jogada não é válida, tente novamente.");
+        }
+    }
+
+private:
+    Tabuleiro& tabuleiro;
+    Jogador& jogador;
+    RegrasDoJogo& regras;
 };
+
+int main(int argc, char* argv[]) {
+    QApplication app(argc, argv);
+
+    Tabuleiro tabuleiro;
+    Jogador jogador;
+    RegrasDoJogo regras;
+    InterfaceGrafica interface(tabuleiro, jogador, regras);
+
+    interface.show();
+
+    return app.exec();
+}

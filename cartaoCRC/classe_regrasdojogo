@@ -1,7 +1,31 @@
+//Classe Regras do jogo
 class RegrasDoJogo {
 public:
-  bool jogadaValida(Tabuleiro tabuleiro, Jogada jogada);
-  bool jogoTerminou(Tabuleiro tabuleiro);
-  void promoverPecaADama(Tabuleiro tabuleiro, int linha, int coluna);
-  // Outras regras específicas do jogo...
+    bool jogadaValida(Tabuleiro& tabuleiro, int linhaOrigem, int colunaOrigem, int linhaDestino, int colunaDestino) {
+        if (!tabuleiro.movimentoValido(linhaOrigem, colunaOrigem, linhaDestino, colunaDestino)) {
+            return false; // Movimento inválido
+        }
+        return true; // Jogada válida
+    }
+
+    bool jogoTerminou(Tabuleiro& tabuleiro) {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Peca* peca = tabuleiro.getPeca(i, j);
+                if (peca != nullptr && peca->get_cor() == tabuleiro.getDaVez()) {
+                    return false; // Ainda existem peças do jogador atual, o jogo não terminou
+                }
+            }
+        }
+        return true; // Todas as peças do jogador atual foram capturadas ou bloqueadas
+    }
+
+    void promoverPecaADama(Tabuleiro& tabuleiro, int linha, int coluna) {
+        if (linha == 0 || linha == 7) {
+            Peca* peca = tabuleiro.getPeca(linha, coluna);
+            if (peca != nullptr) {
+                peca->promover_dama();
+            }
+        }
+    }
 };

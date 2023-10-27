@@ -1,7 +1,27 @@
+//Classe jogador
 class Jogador {
 private:
-  Cor cor;  // Representa a cor do jogador (PRETA ou VERMELHA)
+    Cor cor;
+
 public:
-  Jogada realizarJogada(Tabuleiro tabuleiro);
-  // Outros métodos para tomada de decisões e ações do jogador...
+    Jogador(Cor cor) : cor(cor) {}
+
+    Jogada realizarJogada(InterfaceGrafica& interface) {
+        // Aguarde o jogador selecionar uma peça na interface gráfica.
+        interface.exibirMensagem("Selecione uma peça.");
+
+        // O jogador deve interagir com a interface gráfica para selecionar uma peça de origem.
+        int linhaOrigem = -1;
+        int colunaOrigem = -1;
+
+        // Aguarde o jogador selecionar um destino na interface gráfica.
+        interface.exibirMensagem("Agora, selecione um destino válido.");
+
+        // O jogador deve interagir com a interface gráfica para selecionar um destino.
+        int linhaDestino = -1;
+        int colunaDestino = -1;
+
+        // Após o jogador selecionar as coordenadas de origem e destino, retorne a jogada.
+        return Jogada(linhaOrigem, colunaOrigem, linhaDestino, colunaDestino);
+    }
 };

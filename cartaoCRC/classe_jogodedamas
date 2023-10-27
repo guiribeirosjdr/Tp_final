@@ -1,14 +1,83 @@
+//Classe Jogo de damas
 class JogoDeDamas {
 private:
-  Tabuleiro tabuleiro;
-  Jogador jogador1;
-  Jogador jogador2;
-  RegrasDoJogo regras;
-  InterfaceGrafica interface;
+    Tabuleiro tabuleiro;
+    Jogador jogador1;
+    Jogador jogador2;
+    RegrasDoJogo regras;
+    InterfaceGrafica interface;
 
 public:
-  void iniciarJogo();
-  void rodadaDeJogo();
-  Cor verificarVencedor();
-  void encerrarJogo();
-};
+    JogoDeDamas() : jogador1(PRETA), jogador2(VERMELHA) {
+        // Inicialize a interface gráfica com o tabuleiro, jogadores e regras
+        interface = InterfaceGrafica(tabuleiro, jogador1, regras);
+    }
+
+    void iniciarJogo() {
+        interface.show();
+        rodadaDeJogo();
+    }
+
+    void rodadaDeJogo() {
+        while (!jogoTerminou()) {
+            // Alternar entre os jogadores
+            Jogador& jogadorAtual = (tabuleiro.getDaVez() == PRETA) ? jogador1 : jogador2;
+
+            // Realizar a jogada do jogador atual
+            Jogada jogada = jogadorAtual.realizarJogada(interface);
+
+            // Valide a jogada com as regras do jogo
+            if (regras.jogadaValida(tabuleiro, jogada.linhaOrigem, jogada.colunaOrigem, jogada.linhaDestino, jogada.colunaDestino)) {
+                // Realize a jogada no tabuleiro
+                tabuleiro.realizarJogada(jogada.linhaOrigem, jogada.colunaOrigem, jogada.linhaDestino, jogada.colunaDestino);
+
+                // Atualize a interface gráfica
+                interface.atualizarTabuleiro(tabuleiro);
+
+                // Verifique se o jogo terminou
+                if (jogoTerminou()) {
+                    Cor vencedor = verificarVencedor();
+                    interface.exibirMensagem("Fim de Jogo! O vencedor é: " + ((vencedor == PRETA) ? "PRETA" : "VERMELHA"));
+                    break;
+                }
+            } else {
+                interface.exibirMensagem("Jogada inválida, tente novamente.");
+            }
+        }
+    }
+
+    bool jogoTerminou() {
+        return regras.jogoTerminou(tabuleiro);
+    }
+
+   Cor verificarVencedor() {
+    int contagemPretas = 0;
+    int contagemVermelhas = 0;
+
+    // Contar as peças restantes no tabuleiro
+    for (int linha = 0; linha < 8; linha++) {
+        for (int coluna = 0; coluna < 8; coluna++) {
+            Peca* peca = tabuleiro.getPeca(linha, coluna);
+            if (peca != nullptr) {
+                if (peca->get_cor() == PRETA) {
+                    contagemPretas++;
+                } else if (peca->get_cor() == VERMELHA) {
+                    contagemVermelhas++;
+                }
+            }
+        }
+    }
+
+    if (contagemPretas > contagemVermelhas) {
+        return PRETA; // Jogador com as peças pretas vence
+    } else if (contagemPretas < contagemVermelhas) {
+        return VERMELHA; // Jogador com as peças vermelhas vence
+    } else {
+        return NENHUM; // Empate
+    }
+}
+
+void encerrarJogo() {
+    // Fechar a interface gráfica
+    interface.close();
+}

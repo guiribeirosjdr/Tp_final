@@ -1,12 +1,79 @@
-// Classe: Tabuleiro
+//Classe Tabuleiro
 class Tabuleiro {
-  private:
+private:
     vector<vector<Peca *>> _casas;
     Cor _da_vez;
-  public:
-    // Responsabilidades:
-    Tabuleiro();     // Constructor para criar um tabuleiro de Damas.
-    ~Tabuleiro();    // Destructor para liberar memória alocada.
-    void imprime();  // Imprime o estado atual do tabuleiro.
-    bool movimenta(int linha, int coluna, bool diag_esq);  // Movimenta as peças no tabuleiro.
+
+public:
+    Tabuleiro() {
+        _casas = vector<vector<Peca *>>(8, vector<Peca *>(8, nullptr));
+        _da_vez = PRETA;
+
+        // Inicializar o tabuleiro com peças
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if ((i + j) % 2 == 1) {
+                    if (i < 3) _casas[i][j] = new Peca(PRETA);
+                    if (i > 4) _casas[i][j] = new Peca(VERMELHA);
+                }
+            }
+        }
+    }
+
+    ~Tabuleiro() {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                delete _casas[i][j];
+            }
+        }
+    }
+
+    void imprime() {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (_casas[i][j] == nullptr) {
+                    cout << "  "; // Espaço em branco para casas vazias
+                } else if (_casas[i][j]->get_cor() == PRETA) {
+                    cout << "P"; // Peça preta
+                } else {
+                    cout << "V"; // Peça vermelha
+                }
+                cout << " "; // Espaço em branco entre as casas
+            }
+            cout << endl; // Nova linha para a próxima linha do tabuleiro
+        }
+    }
+
+    bool movimenta(int linha, int coluna, int linha_destino, int coluna_destino) {
+        if (!movimentoValido(linha, coluna, linha_destino, coluna_destino)) {
+            return false; // Movimento inválido
+        }
+
+        // Realize o movimento, movendo a peça da posição atual para a posição de destino
+        _casas[linha_destino][coluna_destino] = _casas[linha][coluna];
+        _casas[linha][coluna] = nullptr;
+
+        // Atualize a vez do próximo jogador
+        _da_vez = (_da_vez == PRETA) ? VERMELHA : PRETA;
+
+        return true; // Movimento válido
+    }
+
+    bool movimentoValido(int linha, int coluna, int linha_destino, int coluna_destino) {
+        // Verifique se a posição de destino está dentro dos limites do tabuleiro
+        if (linha_destino < 0 || linha_destino >= 8 || coluna_destino < 0 || coluna_destino >= 8) {
+            return false; // Movimento inválido, posição de destino fora do tabuleiro
+        }
+
+        // Verifique se a posição de destino está vazia
+        if (_casas[linha_destino][coluna_destino] != nullptr) {
+            return false; // Movimento inválido, posição de destino ocupada
+        }
+
+        // Verifique se a peça pode se mover na diagonal
+        if (abs(linha_destino - linha) != 1 || abs(coluna_destino - coluna) != 1) {
+            return false; // Movimento inválido, não é uma movimentação diagonal simples
+        }
+        return true;
+    }
 };
