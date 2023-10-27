@@ -1,5 +1,5 @@
-#ifndef PecaTp_final
-#define PecaTp_final
+#ifndef PECA_H
+#define PECA_H
 
 #include <string>
 

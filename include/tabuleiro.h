@@ -1,17 +1,21 @@
-#ifndef TabuleiroTp_final
-#define TabuleiroTp_final
+#ifndef TABULEIRO_H
+#define TABULEIRO_H
 
 #include <vector>
-
 #include "peca.h"
+#include "regrasdojogo.h"  
+#include "interfacegrafica.h" 
 
 using namespace std;
 
 class Tabuleiro {
-  private:
+private:
     vector<vector<Peca *>> _casas;
     Cor _da_vez;
-  public:
+    RegrasDoJogo regras; 
+    InterfaceGrafica interface; 
+
+public:
     Tabuleiro();
     ~Tabuleiro();
     void imprime();
