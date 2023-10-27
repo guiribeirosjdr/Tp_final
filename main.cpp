@@ -4,6 +4,11 @@
 #include "regrasdojogo.h"
 #include "interfacegrafica.h"
 #include "jogodedamas.h"
+#include <QApplication>
+#include <QWidget>
+#include <QPushButton>
+#include <QMessageBox>
+
 
 using namespace std;
 
