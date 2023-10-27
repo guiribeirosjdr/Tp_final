@@ -1,4 +1,4 @@
-#include "../include/peca.h"
+#include "peca.h"
 
 Peca::Peca(Cor cor) {
   _cor = cor;

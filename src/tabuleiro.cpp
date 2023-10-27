@@ -1,10 +1,17 @@
-#include "../include/peca.h"
+#include "peca.h"
+#include "tabuleiro.h"
+#include "regrasdojogo.h" 
+#include "interfacegrafica.h" 
 
-Peca::Peca(Cor cor) {
-  _cor = cor;
-  _dama = false;
+Tabuleiro::Tabuleiro() {
+    _da_vez = PRETA;
 }
 
-Cor Peca::get_cor() {
-  return _cor;
+Tabuleiro::~Tabuleiro() {
+}
+
+void Tabuleiro::imprime() {
+}
+
+bool Tabuleiro::movimenta(int linha, int coluna, bool diag_esq) {
 }
