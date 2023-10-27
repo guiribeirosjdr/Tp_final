@@ -1,0 +1,12 @@
+// Classe: Tabuleiro
+class Tabuleiro {
+  private:
+    vector<vector<Peca *>> _casas;
+    Cor _da_vez;
+  public:
+    // Responsabilidades:
+    Tabuleiro();     // Constructor para criar um tabuleiro de Damas.
+    ~Tabuleiro();    // Destructor para liberar memória alocada.
+    void imprime();  // Imprime o estado atual do tabuleiro.
+    bool movimenta(int linha, int coluna, bool diag_esq);  // Movimenta as peças no tabuleiro.
+};

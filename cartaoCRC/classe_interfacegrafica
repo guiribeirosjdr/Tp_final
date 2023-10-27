@@ -1,0 +1,6 @@
+class InterfaceGrafica {
+public:
+  void mostrarTabuleiro(Tabuleiro tabuleiro);
+  Jogada capturarJogada();
+  void exibirMensagem(string mensagem);
+};

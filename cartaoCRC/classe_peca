@@ -1,0 +1,10 @@
+// Classe: Peca
+class Peca {
+  private:
+    Cor _cor;
+    bool _dama;
+  public:
+    // Responsabilidades:
+    Peca(Cor cor);  // Constructor para criar uma peça com a cor especificada.
+    Cor get_cor();  // Retorna a cor da peça.
+};

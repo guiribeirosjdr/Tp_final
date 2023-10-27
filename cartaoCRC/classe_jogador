@@ -1,0 +1,7 @@
+class Jogador {
+private:
+  Cor cor;  // Representa a cor do jogador (PRETA ou VERMELHA)
+public:
+  Jogada realizarJogada(Tabuleiro tabuleiro);
+  // Outros métodos para tomada de decisões e ações do jogador...
+};

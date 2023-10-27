@@ -1,0 +1,7 @@
+class RegrasDoJogo {
+public:
+  bool jogadaValida(Tabuleiro tabuleiro, Jogada jogada);
+  bool jogoTerminou(Tabuleiro tabuleiro);
+  void promoverPecaADama(Tabuleiro tabuleiro, int linha, int coluna);
+  // Outras regras específicas do jogo...
+};

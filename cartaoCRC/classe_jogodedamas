@@ -1,0 +1,14 @@
+class JogoDeDamas {
+private:
+  Tabuleiro tabuleiro;
+  Jogador jogador1;
+  Jogador jogador2;
+  RegrasDoJogo regras;
+  InterfaceGrafica interface;
+
+public:
+  void iniciarJogo();
+  void rodadaDeJogo();
+  Cor verificarVencedor();
+  void encerrarJogo();
+};

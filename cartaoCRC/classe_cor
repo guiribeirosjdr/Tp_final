@@ -1,0 +1,5 @@
+// Enumeração: Cor
+enum Cor {
+  PRETA,   // Cor da peça preta
+  VERMELHA // Cor da peça vermelha
+};
