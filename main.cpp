@@ -8,9 +8,9 @@
 using namespace std;
 
 int main() {
-    JogoDeDamas jogo; // Crie uma instância do jogo de Damas
+    JogoDeDamas jogo; 
 
-    jogo.iniciarJogo(); // Inicie o jogo
+    jogo.iniciarJogo(); 
 
     while (!jogo.jogoTerminou()) {
         jogo.rodadaDeJogo();
