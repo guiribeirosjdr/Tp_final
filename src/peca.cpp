@@ -1,10 +1,16 @@
 #include "peca.h"
 
-Peca::Peca(Cor cor) {
-  _cor = cor;
-  _dama = false;
+Peca::Peca(Cor cor) : cor(cor), dama(false) {
+   }
+
+Cor Peca::getCor() const {
+    return cor;
 }
 
-Cor Peca::get_cor() {
-  return _cor;
+bool Peca::isDama() const {
+    return dama;
+}
+
+void Peca::promoverDama() {
+    dama = true;
 }
