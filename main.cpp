@@ -9,22 +9,22 @@
 #include "interfacegrafica.h"
 #include "jogodedamas.h"
 
-
 using namespace std;
 
 int main() {
-    JogoDeDamas jogo; 
+    JogoDeDamas jogo;
 
-    jogo.iniciarJogo(); 
+    jogo.iniciarJogo();
 
     while (!jogo.jogoTerminou()) {
         jogo.rodadaDeJogo();
     }
 
     Cor vencedor = jogo.verificarVencedor();
-    jogo.encerrarJogo();
 
     cout << "O jogador " << (vencedor == PRETA ? "PRETO" : "VERMELHO") << " venceu!" << endl;
+
+    jogo.encerrarJogo(); 
 
     return 0;
 }
