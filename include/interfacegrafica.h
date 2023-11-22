@@ -8,7 +8,7 @@ class InterfaceGrafica {
 public:
     void mostrarTabuleiro(Tabuleiro& tabuleiro);
     Jogada capturarJogada(Jogador& jogador);
-    void exibirMensagem(string mensagem);
+    void exibirMensagem(std::string mensagem);
 };
 
 #endif
