@@ -5,15 +5,24 @@
 #include "jogador.h"
 #include <SFML/Graphics.hpp>
 
+// Representa a interface gráfica do jogo
 class InterfaceGrafica {
 private:
-    sf::RenderWindow window;
+  // Armazena a janela gráfica
+  sf::RenderWindow window;
 
 public:
-    InterfaceGrafica();
-    void mostrarTabuleiro(Tabuleiro& tabuleiro);
-    Jogada capturarJogada(Jogador& jogador);
-    void exibirMensagem(std::string mensagem);
+  // Construtor da classe InterfaceGrafica
+  InterfaceGrafica();
+
+  // Mostra o tabuleiro na janela gráfica
+  void mostrarTabuleiro(Tabuleiro& tabuleiro);
+
+  // Captura uma jogada do jogador
+  Jogada capturarJogada(Jogador& jogador);
+
+  // Exibe uma mensagem na janela gráfica
+  void exibirMensagem(std::string mensagem);
 };
 
 #endif
