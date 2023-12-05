@@ -1,30 +1,43 @@
-#include <iostream>
+// Inclui as bibliotecas Qt necessárias para criar a interface gráfica
 #include <QApplication>
 #include <QWidget>
 #include <QPushButton>
 #include <QMessageBox>
+
+// Inclui as classes necessárias para implementar o jogo de damas
 #include "tabuleiro.h"
 #include "jogador.h"
 #include "regrasdojogo.h"
 #include "interfacegrafica.h"
 #include "jogodedamas.h"
 
+// Declara que a biblioteca padrão do C++ será usada
 using namespace std;
 
 int main() {
-    JogoDeDamas jogo;
 
-    jogo.iniciarJogo();
+  // Instancia um novo jogo de damas
+  JogoDeDamas jogo;
 
-    while (!jogo.jogoTerminou()) {
-        jogo.rodadaDeJogo();
-    }
+  // Inicia o jogo
+  jogo.iniciarJogo();
 
-    Cor vencedor = jogo.verificarVencedor();
+  // Executa o jogo até que ele termine
+  while (!jogo.jogoTerminou()) {
 
-    cout << "O jogador " << (vencedor == PRETA ? "PRETO" : "VERMELHO") << " venceu!" << endl;
+    //Realiza uma rodada do jogo
+    jogo.rodadaDeJogo();
+  }
 
-    jogo.encerrarJogo(); 
+  // Verifica o vencedor do jogo
+  Cor vencedor = jogo.verificarVencedor();
 
-    return 0;
+  // Imprime o vencedor do jogo
+  cout << "O jogador " << (vencedor == PRETA ? "PRETO" : "VERMELHO") << " venceu!" << endl;
+
+  // Encerra o jogo
+  jogo.encerrarJogo();
+
+  // Retorna o valor 0 para indicar que o programa terminou com sucesso**
+  return 0;
 }
