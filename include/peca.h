@@ -5,19 +5,30 @@
 using namespace std;
 
 enum Cor {
-    PRETA, VERMELHA
+  PRETA, VERMELHA
 };
 
+// Representa uma peça no jogo de damas
 class Peca {
 private:
-    Cor cor;
-    bool dama;
+  // Cor da peça
+  Cor cor;
+
+  // Indica se a peça é uma dama
+  bool dama;
 
 public:
-    Peca(Cor cor);
-    Cor getCor() const;
-    bool isDama() const;
-    void promoverDama();
+  // Construtor da peça
+  Peca(Cor cor) : cor(cor) {}
+
+  // Obtém a cor da peça
+  Cor& getCor() const { return cor; }
+
+  // Indica se a peça é uma dama
+  bool isDama() const { return dama; }
+
+  // Promove a peça a dama
+  void promoverDama() { dama = true; }
 };
 
 #endif
